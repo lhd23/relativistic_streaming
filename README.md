@@ -37,8 +37,8 @@ Here `chi1`, `chi2` are the redshift-space comoving distances of the two tracers
 
 Halo-model one-halo contributions are supported via the `MA`, `MB`, `cA`, `cB` parameters
 (NFW halo masses and concentrations for each tracer population).
-Note: input real-space correlation functions (see Appendix B in 2506.22431) are read
-from tables hardcoded using the RayGal simulation cosmology (`z=0.341`, WMAP7 cosmology).
+Note: input real-space correlation functions (see [here](https://arxiv.org/pdf/2506.22431#section*.56)) are read
+from tables hardcoded using the [RayGal simulation cosmology](https://arxiv.org/abs/1803.04294) (`z=0.341`, WMAP7 cosmology).
 This is for reasons of speed. For different cosmologies and redshifts, new tables should be generated.
 
 ## Quick start
