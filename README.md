@@ -12,15 +12,15 @@ and a one-halo contribution for the gravitational redshift.
 
 ## Models
 
-Three model classes are provided in `corrfuncs_models.py`, differing in their coordinate system and integration strategy:
+Three model classes are provided in `corrfuncs_models.py`, differing in their coordinate system and integration method:
 
 | Class | Coordinates | Integration | Use case |
 |---|---|---|---|
-| `gsm` | (chi1, chi2, varmu) | 2D (`dblquad`) | Full wide-angle; general pair geometry |
-| `gsm_sdu` | (s, d, mu) | 2D (inherits `gsm`) | Multipole decomposition |
-| `gsm_DOL` | (s, mu) | 1D (`quad`) | Distant-observer limit |
+| `gsm` | (chi1, chi2, varmu) | 2D (`dblquad`) | Two-point correlations in the full wide-angle regime |
+| `gsm_sdu` | (s, d, mu) | 3D (inherits `gsm`) | Extract multipoles from two-point correlations |
+| `gsm_DOL` | (s, mu) | 1D (`quad`) | Two-point correlations in the distant-observer limit |
 
-Here `chi1`, `chi2` are the redshift-space comoving distances of the two tracers, `varmu` is the cosine of their angular separation, `s` is the redshift-space pair separation, `d` is their mean distance, and `mu` is the cosine of the angle between the separation vector and the line of sight (hence sdu in gsm_sdu).
+Here `chi1`, `chi2` are the redshift-space comoving distances of the two tracers, `varmu` is the cosine of their angular separation, `s` is the redshift-space pair separation, `d` is their mean distance, and `mu` is the cosine of the angle between the separation vector and the line of sight.
 
 ## Optional physics flags
 
@@ -37,8 +37,9 @@ Here `chi1`, `chi2` are the redshift-space comoving distances of the two tracers
 
 Halo-model one-halo contributions are supported via the `MA`, `MB`, `cA`, `cB` parameters
 (NFW halo masses and concentrations for each tracer population).
-Note: currently hardcoded for `z=0.341` (and WMAP7 cosmology) for speed.
-Code can be slow due to multipole's requiring triple integration.
+Note: input real-space correlation functions (see Appendix B in 2506.22431) are read
+from tables hardcoded using the RayGal simulation cosmology (`z=0.341`, WMAP7 cosmology).
+This is for reasons of speed. For different cosmologies and redshifts, new tables should be generated.
 
 ## Quick start
 
@@ -67,7 +68,7 @@ print(xi1)
 - `numpy`, `scipy`
 
 Light use is also made of
-- `camb` (for basic cosmological quantities, e.g.)
+- `camb` (for basic cosmological quantities)
 - `colossus` (for halo recipes)
 
 ## Citation
