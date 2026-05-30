@@ -28,18 +28,21 @@ Here `chi1`, `chi2` are the redshift-space comoving distances of the two tracers
 |---|---|
 | `bA` | linear bias of tracer A |
 | `bB` | linear bias of tracer B (choose different `bA` and `bB` when computing odd multipoles) |
-| `with_gravz` | Include gravitational redshift in the mean pairwise displacement |
+| `with_gravz` | Include gravitational redshift (only in the mean) |
 | `with_rsd` | Include redshift-space distortions (includes full wide-angle corrections) |
 | `with_clpt` | Use CLPT (Convolution Lagrangian PT) tables for the real-space correlation function and mean pairwise velocity |
 | `with_lightcone` | Include lightcone corrections |
 | `with_lookback` | Include lookback-time corrections |
-| `with_all_cov` | Incldue gravitational-potential contributions to the covariance |
+| `with_all_cov` | Incldue gravitational redshift contributions to the covariance |
 
 Halo-model one-halo contributions are supported via the `MA`, `MB`, `cA`, `cB` parameters
 (NFW halo masses and concentrations for each tracer population).
 Note: input real-space correlation functions (see [here](https://arxiv.org/pdf/2506.22431#section*.56)) are read
 from tables hardcoded using the [RayGal simulation cosmology](https://arxiv.org/abs/1803.04294) (`z=0.341`, WMAP7 cosmology).
 This is for reasons of speed. For different cosmologies and redshifts, new tables should be generated.
+
+If one is only interested in RSD and their complete wide-angle corrections, set `with_gravz=False`.
+This returns the model described in [arXiv:2307.01294](https://arxiv.org/abs/2307.01294).
 
 ## Quick start
 
